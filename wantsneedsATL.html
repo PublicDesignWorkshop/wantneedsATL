@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <div align="center">
+    <div id="header">   
+    <div class="container"  >
+        <div class="row text-center">
+            <div  class="col-md-12" >
+                <span class="head-main" >ATL NEEDS AND WANTS</span>
+         
+                 
+            </div>
+        </div>
+    </div>
+   
+    </div>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        
+    </head>
+    <body>
+        <p></p>
+        <!-- https://public.tableau.com/views/WantsAndNeeds/Sheet2?:embed=y&:display_count=yes -->
+        <iframe src="https://public.tableau.com/views/WantsAndNeeds/Sheet2?:showVizHome=no&:embed=true" height = "860" width = "1200" frameborder = "1"></iframe>
+        <p></p>
+        <script type="text/javascript" src="xbMarquee.js"></script>
+        <script src="jquery-3.1.1.js"></script>
+        <script src="jquery.csv.js"></script>
+
+        <!-- <table>
+        <tr>
+        <td> -->
+        <table>
+            
+            <tr>
+                <th>ATLANTA NEEDS...</th>
+                <th>ATLANTA WANTS...</th>
+            </tr>
+            <tr>
+                
+                <td>
+                <script type="text/javascript">
+
+                    //var wantsString = "";
+                    //var wants;
+
+                    var a = function(callback) {
+                        $.ajax({
+                            type: "GET",
+                            url: "needsList.csv",
+                            dataType: "text",
+                            async: false,
+                            success: callback
+                        });
+
+                    };
+
+                    a(function(data) {
+                        makeScroller(data);
+                    })
+
+                    // $(document).ready(function() {
+                    //     $.ajax({
+                    //         type: "GET",
+                    //         url: "wantsList.csv",
+                    //         dataType: "text",
+                    //         success: function(data) {
+                    //             makeScroller(data);
+                    //         },
+                    //         async: false
+                    //     });
+
+                    // });
+
+                    
+
+                    function processData(allText) {
+                        var allTextLines = allText.split(/\r\n|\n/);
+                        var headers = allTextLines[0].split(',');
+                        var lines = [];
+
+                        for (var i=1; i<allTextLines.length; i++) {
+                            var data = allTextLines[i].split(',');
+                            if (data.length == headers.length) {
+
+                                var tarr = [];
+                                for (var j=0; j<headers.length; j++) {
+                                    tarr.push(data[j]);
+                                }
+                                lines.push(tarr);
+                                //wants.push(tarr);
+                            }
+                        }
+                        // alert(lines);
+                    
+
+                        //wants = lines;
+                        return lines;
+                    }
+                    // console.log(wantsString);
+
+                    function makeScroller(data) {
+                        var needs = processData(data);
+                        var needsString = "";
+
+                        //console.log(wants)
+                        for (var i = 0; i < needs.length; i++) {
+                          // for(var j = 0; j < wants[i].length; j++) {
+                          //   //console.log(wants[i][j]);
+                          //   wantsString += "\"" + wants[i][j] + "\"\n";
+                          // }
+                           var tempString = "<p>\"" + needs[i][0] + "\"";
+                          if(tempString.length > 20) {
+                            tempString += "</p><p>";
+                          }
+                          needsString += tempString + "<font size = '4'>- " + needs[i][2].slice(5,7) + "/" + needs[i][2].slice(8,10) + "/" + needs[i][2].slice(0,4) + " " + needs[i][3].slice(0,5) + "</font></p>";
+                        }
+
+                        //set the marquee parameters
+                        function init() { up_marquee2.start(); }
+                        var up_marquee2_Text = needsString;
+                        var up_marquee2_Direction = 'up';
+                        var up_marquee2_Contents='<span style="font-family:Roboto;font-size:24pt;white-space:nowrap;">' + up_marquee2_Text + '</span>';
+                        up_marquee2 = new xbMarquee('up_marquee2', '750px', '500px', 10, 100, up_marquee2_Direction, 'scroll', up_marquee2_Contents);
+                        window.setTimeout( init, 200);
+                    }
+
+                </script>
+                </td>
+                <td>
+                <script type="text/javascript">
+
+                    //var wantsString = "";
+                    //var wants;
+
+                    var a = function(callback) {
+                        $.ajax({
+                            type: "GET",
+                            url: "wantsList.csv",
+                            dataType: "text",
+                            async: false,
+                            success: callback
+                        });
+
+                    };
+
+                    a(function(data) {
+                        makeScroller(data);
+                    })
+
+                    // $(document).ready(function() {
+                    //     $.ajax({
+                    //         type: "GET",
+                    //         url: "wantsList.csv",
+                    //         dataType: "text",
+                    //         success: function(data) {
+                    //             makeScroller(data);
+                    //         },
+                    //         async: false
+                    //     });
+
+                    // });
+
+                    
+
+                    function processData(allText) {
+                        var allTextLines = allText.split(/\r\n|\n/);
+                        var headers = allTextLines[0].split(',');
+                        var lines = [];
+
+                        for (var i=1; i<allTextLines.length; i++) {
+                            var data = allTextLines[i].split(',');
+                            if (data.length == headers.length) {
+
+                                var tarr = [];
+                                for (var j=0; j<headers.length; j++) {
+                                    tarr.push(data[j]);
+                                }
+                                lines.push(tarr);
+                                //wants.push(tarr);
+                            }
+                        }
+                        // alert(lines);
+                    
+
+                        //wants = lines;
+                        return lines;
+                    }
+                    // console.log(wantsString);
+
+                    function makeScroller(data) {
+                        var wants = processData(data);
+                        var wantsString = "";
+
+                        //console.log(wants)
+                        for (var i = 0; i < wants.length; i++) {
+                          // for(var j = 0; j < wants[i].length; j++) {
+                          //   //console.log(wants[i][j]);
+                          //   wantsString += "\"" + wants[i][j] + "\"\n";
+                          // }
+                          var tempString = "<p>\"" + wants[i][0] + "\"";
+                          if(tempString.length > 20) {
+                            tempString += "</p><p>";
+                          }
+                          wantsString += tempString + "<font size = '4'>- " + wants[i][2].slice(5,7) + "/" + wants[i][2].slice(8,10) + "/" + wants[i][2].slice(0,4) + " " + wants[i][3].slice(0,5) + "</font></p>";
+                        }
+
+                        //set the marquee parameters
+                        function init() { up_marquee.start(); }
+                        var up_marquee_Text = wantsString;
+                        var up_marquee_Direction = 'up';
+                        var up_marquee_Contents='<span style="font-family:Roboto;font-size:24pt;white-space:nowrap;">' + up_marquee_Text + '</span>';
+                        up_marquee = new xbMarquee('up_marquee', '750px', '500px', 10, 100, up_marquee_Direction, 'scroll', up_marquee_Contents);
+                        window.setTimeout( init, 200);
+                    }
+
+                </script>
+                </td>
+            </tr>
+
+        </table>
+        <p></p>
+        <!-- </td> -->
+        <!-- <td> -->
+        <!-- <iframe src="https://public.tableau.com/views/ATLWantsandNeeds2017Week1/Dashboard1?:showVizHome=no&:embed=true" height = "860" width = "1000"></iframe> -->
+        <!-- </td> -->
+        <!-- </tr>
+        </table> -->
+        <iframe src="https://public.tableau.com/views/ATLWantsandNeedsBubbleChart/Dashboard2?:showVizHome=no&:embed=true" height = "860" width = "1000" frameborder = "1"></iframe>
+<!--         https://public.tableau.com/views/ATLWantsandNeedsBubbleChart/Dashboard2?:embed=y&:display_count=yes -->
+    </body>
+    </div>
+</html>
